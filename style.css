@@ -55,6 +55,9 @@ h1, h2, h3, h4, h5, h6 {
 
     width: 100%;
     height: 100vh;
+    min-height: 650px;
+    position: relative;
+
     background: url("img/intro.jpg") center no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
@@ -109,6 +112,24 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 30px;
 }
 
+.header.fixed {
+    padding: 10px 0;
+
+    background-color: #ffaa97;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header.active {
+    background-color: #ffaa97;
+}
+
 .header__logo {
     font-size: 30px;
     font-weight: 700;
@@ -127,6 +148,10 @@ h1, h2, h3, h4, h5, h6 {
 .nav {
     font-size: 14px;
     text-transform: uppercase;
+}
+
+.nav.active{
+    display: block;
 }
 
 .nav__link {
@@ -168,6 +193,87 @@ h1, h2, h3, h4, h5, h6 {
     color: #fce38a;
 }
 
+/*nav__toggle
+=====================*/
+
+.nav-toggle {
+    width: 30px;
+    padding: 10px 0;
+
+    font-size: 0;
+    color: transparent;
+
+    display: none;
+
+    border: 0;
+    background: none;
+
+    cursor: pointer;
+
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1;
+}
+
+.nav-toggle:focus {
+    outline: 0;
+}
+
+.nav-toggle__item {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    transition: background .2s linear;
+}
+
+.nav-toggle:focus {
+    outline: 0;
+}
+
+.nav-toggle.active .nav-toggle__item {
+    background: none;
+}
+
+.nav-toggle.active .nav-toggle__item:before {
+    transform-origin: left top;
+    transform: rotate(45deg) translate3d(0px, -2px, 0)
+}
+
+.nav-toggle.active .nav-toggle__item:after {
+    transform-origin: left bottom;
+    transform: rotate(-45deg) translate3d(0px, 3px, 0);
+}
+
+.nav-toggle__item:before {
+    top: -8px;
+}
+
+.nav-toggle__item:after {
+    bottom: -8px;
+}
+
+.nav-toggle__item:before,
+.nav-toggle__item:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+
+    background-color: #fff;
+
+    position: absolute;
+    left: 0;
+    z-index: 1;
+
+    transition: transform .2s linear;
+}
 
 /*Button
 =====================*/
@@ -599,11 +705,16 @@ h1, h2, h3, h4, h5, h6 {
 =====================*/
 
 .reviews {
-    padding: 0 110px;
+
     position: relative;
 }
 
+.reviews .slick-slider {
+    padding: 0 110px;
+}
+
 .reviews__item {
+    min-height: 210px;
     padding-left: 255px;
     position: relative;
 }
@@ -644,16 +755,26 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 10px;
 }
 
-.reviews__btn {
+
+.slick-arrow {
+    display: block;
     position: absolute;
     top: 50%;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
     transform: translateY(-50%);
     z-index: 1;
     font-size: 0;
     color: transparent;
 }
 
-.reviews__btn:after {
+.slick-arrow:focus {
+    outline: 0;
+}
+
+.slick-arrow:after {
     content: "";
     display: block;
     width: 16px;
@@ -665,12 +786,14 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-50%);
 }
 
-.reviews__btn--prev {
+
+.slick-prev {
     left: 0;
     transform: rotate(-45deg)
 }
 
-.reviews__btn--next {
+
+.slick-next {
     right: 0;
     transform: rotate(135deg)
 }
@@ -1139,7 +1262,7 @@ svg {
 .instagram__item {
     width: 33%;
 
-border-bottom: 1px solid #ffffFF;
+    border-bottom: 1px solid #ffffFF;
 }
 
 .instagram__item img {
@@ -1241,21 +1364,10 @@ border-bottom: 1px solid #ffffFF;
 }
 
 
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 1230px) {
 
     /*Intro
     =====================*/
-
     .intro__title {
         font-size: 120px;
     }
@@ -1280,7 +1392,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Statistics
 =====================*/
-
     .stat {
         justify-content: center;
     }
@@ -1299,18 +1410,17 @@ border-bottom: 1px solid #ffffFF;
 
     /*Services
 =====================*/
-
     .services__item {
         width: 50%;
         padding-bottom: 0;
     }
+
     .services__item--border {
         border-bottom: 0;
     }
 
     /*Reviews*/
-
-    .reviews {
+    .reviews .slick-slider {
         padding: 0 60px;
     }
 
@@ -1328,7 +1438,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Clients*/
-
     .clients {
         max-width: 600px;
         margin: 0 auto;
@@ -1345,7 +1454,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Footer
 =====================*/
-
     .footer__column--first {
         width: 100%;
     }
@@ -1358,7 +1466,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Instagram
 =====================*/
-
     .instagram {
         justify-content: flex-start;
     }
@@ -1370,14 +1477,43 @@ border-bottom: 1px solid #ffffFF;
 }
 
 
-
 @media (max-width: 770px) {
+
+    /*Intro
+=====================*/
+    .intro {
+        min-height: 650px;
+    }
+
+    /*Header
+=====================*/
+    .header {
+        padding: 10px 0;
+    }
+
+
     /*Nav
 =====================*/
-
     .nav {
         display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffaa97;
+        width: 100%;
     }
+
+    .nav__link {
+        display: block;
+        margin: 0;
+        padding: 8px 20px;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
 
     /*Section
 =====================*/
@@ -1401,7 +1537,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Card
 =====================*/
-
     .card {
         justify-content: center;
         margin-top: 50px;
@@ -1419,7 +1554,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Services
 =====================*/
-
     .services {
         justify-content: center;
     }
@@ -1430,6 +1564,7 @@ border-bottom: 1px solid #ffffFF;
         padding-left: 55px;
         padding-right: 0;
     }
+
     .services__item--border {
         border-bottom: 0;
     }
@@ -1441,7 +1576,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*WhatWeDo
 =====================*/
-
     .whatWeDo__item {
         width: 100%;
     }
@@ -1451,7 +1585,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Reviews*/
-
     .reviews__icon {
         position: static;
         margin: 0 auto 20px;
@@ -1470,7 +1603,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Works*/
-
     .works {
         flex-wrap: wrap;
     }
@@ -1481,7 +1613,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Blog*/
-
     .blog {
         display: flex;
         max-width: 380px;
@@ -1499,7 +1630,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Footer
 =====================*/
-
     .footer__column--second,
     .footer__column--third {
         width: 100%;
@@ -1521,7 +1651,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Section
 =====================*/
-
     .section__header {
         margin-bottom: 50px;
     }
@@ -1556,7 +1685,6 @@ border-bottom: 1px solid #ffffFF;
 
     /*Devices
 =====================*/
-
     .devices {
         max-width: 320px;
     }
@@ -1572,18 +1700,16 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Reviews*/
-
-    .reviews {
+    .reviews .slick-slider {
         padding: 0;
     }
 
-    .reviews__btn {
+    .slick-arrow {
         top: 18%;
     }
 
     /*Logos
 =====================*/
-
     .logos {
         flex-wrap: wrap;
         justify-content: center;
@@ -1599,8 +1725,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*works*/
-
-
     .works__column {
 
         width: 100%;
@@ -1608,7 +1732,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Clients*/
-
     .clients__item {
         padding-left: 0;
         text-align: center;
@@ -1619,20 +1742,18 @@ border-bottom: 1px solid #ffffFF;
 
     }
 
-    .clients__text:before{
+    .clients__text:before {
         margin: 15px auto;
     }
 
 
     /*Footer*/
-
     .footer__link {
         margin-right: -10px;
     }
 
 
     /*Subscribe*/
-
     .subscribe {
         flex-wrap: wrap;
         max-width: none;
@@ -1649,7 +1770,6 @@ border-bottom: 1px solid #ffffFF;
     }
 
     /*Blogs*/
-
     .blogs__title {
         font-size: 10px;
     }
